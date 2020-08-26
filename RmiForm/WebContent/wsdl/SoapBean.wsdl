@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://bean.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://bean.com" xmlns:intf="http://bean.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://bean.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="sayHelloWorld">
+    <complexType>
+     <sequence>
+      <element name="userName" type="xsd:string"/>
+      <element name="mail" type="xsd:string"/>
+      <element name="dept" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sayHelloWorldResponse">
+    <complexType>
+     <sequence>
+      <element name="sayHelloWorldReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="sayHelloWorldRequest">
+
+      <wsdl:part element="impl:sayHelloWorld" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sayHelloWorldResponse">
+
+      <wsdl:part element="impl:sayHelloWorldResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="SoapBean">
+
+      <wsdl:operation name="sayHelloWorld">
+
+         <wsdl:input message="impl:sayHelloWorldRequest" name="sayHelloWorldRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sayHelloWorldResponse" name="sayHelloWorldResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SoapBeanSoapBinding" type="impl:SoapBean">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="sayHelloWorld">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sayHelloWorldRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sayHelloWorldResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SoapBeanService">
+
+      <wsdl:port binding="impl:SoapBeanSoapBinding" name="SoapBean">
+
+         <wsdlsoap:address location="http://localhost:8080/RmiForm/services/SoapBean"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

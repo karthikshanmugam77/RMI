@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from UserBeanService WSDL service -->
+
+  <service name="UserBean" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://bean.com"/>
+      <parameter name="wsdlServiceElement" value="UserBeanService"/>
+      <parameter name="schemaQualified" value="http://bean.com"/>
+      <parameter name="wsdlServicePort" value="UserBean"/>
+      <parameter name="className" value="com.bean.UserBean"/>
+      <parameter name="wsdlPortType" value="UserBean"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://bean.com" xmlns:retNS="http://bean.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="submit" qname="operNS:submit" returnQName="retNS:submitReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://bean.com" xmlns:retNS="http://bean.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getUserName" qname="operNS:getUserName" returnQName="retNS:getUserNameReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://bean.com" name="setUserName" qname="operNS:setUserName" soapAction="">
+        <parameter xmlns:pns="http://bean.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:userName" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://bean.com" xmlns:retNS="http://bean.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getMail" qname="operNS:getMail" returnQName="retNS:getMailReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://bean.com" name="setMail" qname="operNS:setMail" soapAction="">
+        <parameter xmlns:pns="http://bean.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:mail" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://bean.com" xmlns:retNS="http://bean.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getDept" qname="operNS:getDept" returnQName="retNS:getDeptReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://bean.com" name="setDept" qname="operNS:setDept" soapAction="">
+        <parameter xmlns:pns="http://bean.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:dept" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="submit setMail setUserName getDept getUserName setDept getMail"/>
+
+  </service>
+</deployment>
